@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Calendar</title>
+	<style>
+		table {
+			border-collapse: collapse;
+		}
+		td {
+			border: 1px solid black;
+			padding: 10px;
+			text-align: center;
+		}
+		.highlight-green {
+			background-color: green;
+			color: white;
+		}
+		.highlight-purple {
+			background-color: purple;
+			color: white;
+		}
+	</style>
+	<script>
+		function createCalendar(startDay) {
+			var table = document.createElement("table");
+
+			// Add header row for calendar title
+			var row = table.insertRow();
+			var cell = row.insertCell();
+			cell.colSpan = "7";
+			cell.innerHTML = "My Calendar";
+
+			// Add rows for each day
+			row = table.insertRow();
+			cell = row.insertCell();
+			cell.innerHTML = "Day 0 - " + startDay.toDateString();
+
+			for (var i = 1; i < 365; i++) {
+				var nextDay = new Date(startDay);
+				nextDay.setDate(startDay.getDate() + i);
+
+				row = table.insertRow();
+				cell = row.insertCell();
+				cell.innerHTML = "Day " + i;
+				cell = row.insertCell();
+				cell.innerHTML = nextDay.toDateString();
+
+				if (i == 40) {
+					cell.classList.add("highlight-green");
+				} else if (nextDay.getDate() == 5 && nextDay.getMonth() == 3) {
+					row.classList.add("highlight-green");
+				} else if (i == 189) {
+					cell.classList.add("highlight-purple");
+				} else if (nextDay.getDate() == new Date().getDate() && nextDay.getMonth() == new Date().getMonth() && nextDay.getFullYear() == new Date().getFullYear()) {
+					cell.style.border = "3px solid red";
+				}
+			}
+
+			document.getElementById("calendar").appendChild(table);
+		}
+	</script>
+</head>
+<body onload="createCalendar(new Date('2023-02-24'));">
+	<div id="calendar"></div>
+</body>
+</html>
+
+================================================= scroll option==================================
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Calendar</title>
+	<style>
+		table {
+			border-collapse: collapse;
+		}
+		td {
+			border: 1px solid black;
+			padding: 10px;
+			text-align: center;
+		}
+		.highlight-green {
+			background-color: green;
+			color: white;
+		}
+		.highlight-purple {
+			background-color: purple;
+			color: white;
+		}
+	</style>
+	<script>
+		function createCalendar(startDay) {
+			var table = document.createElement("table");
+
+			// Add header row for calendar title
+			var row = table.insertRow();
+			var cell = row.insertCell();
+			cell.colSpan = "7";
+			cell.innerHTML = "My Calendar";
+
+			// Add rows for each day
+			row = table.insertRow();
+			cell = row.insertCell();
+			cell.innerHTML = "Day 0 - " + startDay.toDateString();
+
+			for (var i = 1; i < 365; i++) {
+				var nextDay = new Date(startDay);
+				nextDay.setDate(startDay.getDate() + i);
+
+				row = table.insertRow();
+				cell = row.insertCell();
+				cell.innerHTML = "Day " + i;
+				cell = row.insertCell();
+				cell.innerHTML = nextDay.toDateString();
+
+				if (i == 40) {
+					cell.classList.add("highlight-green");
+				} else if (nextDay.getDate() == 5 && nextDay.getMonth() == 3) {
+					row.classList.add("highlight-green");
+				} else if (i == 189) {
+					cell.classList.add("highlight-purple");
+				} else if (nextDay.getDate() == new Date().getDate() && nextDay.getMonth() == new Date().getMonth() && nextDay.getFullYear() == new Date().getFullYear()) {
+					cell.style.border = "3px solid red";
+					cell.scrollIntoView();
+				}
+			}
+
+			document.getElementById("calendar").appendChild(table);
+		}
+	</script>
+</head>
+<body onload="createCalendar(new Date('2023-02-24'));">
+	<div id="calendar"></div>
+</body>
+</html>
